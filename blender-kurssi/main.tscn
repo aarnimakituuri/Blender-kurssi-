@@ -1,3 +1,43 @@
 [gd_scene format=3 uid="uid://j86aweof4wfe"]
 
+[ext_resource type="Texture2D" uid="uid://bqmiejn7a3km8" path="res://nqweba_dawn_1k.exr" id="1_h2yge"]
+[ext_resource type="Shader" uid="uid://duv7rt3jvkghv" path="res://water.gdshader" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://wwxs7eu1hivm" path="res://water_normal_map.png" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://bp6l5qltv4sud" path="res://tfc_controller.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://cufplgudvka7j" path="res://browser_input_fixes.gd" id="5_7mycd"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8s1xx"]
+panorama = ExtResource("1_h2yge")
+
+[sub_resource type="Sky" id="Sky_6gj4f"]
+sky_material = SubResource("PanoramaSkyMaterial_8s1xx")
+
+[sub_resource type="Environment" id="Environment_bdub4"]
+background_mode = 2
+sky = SubResource("Sky_6gj4f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdub4"]
+render_priority = 0
+shader = ExtResource("2_1bvp3")
+shader_parameter/water_color = Color(0, 0.35, 0.7, 1)
+shader_parameter/normal_map = ExtResource("3_lquwl")
+shader_parameter/wave_speed = 0.05
+shader_parameter/wave_height = 0.1
+shader_parameter/reflection_strength = 0.5
+shader_parameter/uv_tiling = 4.0
+
 [node name="Node3D" type="Node3D" unique_id=1865696005]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1595662144]
+environment = SubResource("Environment_bdub4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=249732558]
+size = Vector3(10, 1, 10)
+material = SubResource("ShaderMaterial_bdub4")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1162945575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7283013, 0)
+script = ExtResource("4_lquwl")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1041632708]
+script = ExtResource("5_7mycd")
