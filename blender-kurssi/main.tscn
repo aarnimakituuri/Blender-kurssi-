@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bqmiejn7a3km8" path="res://nqweba_dawn_1k.exr" id="1_h2yge"]
 [ext_resource type="Shader" uid="uid://duv7rt3jvkghv" path="res://water.gdshader" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://wwxs7eu1hivm" path="res://water_normal_map.png" id="3_lquwl"]
-[ext_resource type="Script" uid="uid://bp6l5qltv4sud" path="res://tfc_controller.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://cufplgudvka7j" path="res://browser_input_fixes.gd" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://xqdnpw6xxqrk" path="res://kona.glb" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://d3jsqc2nne51q" path="res://Character.tscn" id="7_5vw27"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8s1xx"]
 panorama = ExtResource("1_h2yge")
@@ -32,12 +33,15 @@ shader_parameter/uv_tiling = 4.0
 environment = SubResource("Environment_bdub4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=249732558]
-size = Vector3(10, 1, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7907915, -1.4081993, -1.6363258)
+size = Vector3(10, 1, 16.57373)
 material = SubResource("ShaderMaterial_bdub4")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1162945575]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7283013, 0)
-script = ExtResource("4_lquwl")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1041632708]
 script = ExtResource("5_7mycd")
+
+[node name="kona" parent="." unique_id=1722029832 instance=ExtResource("6_272bh")]
+transform = Transform3D(0.89312726, 0, 0.44980404, 0, 1, 0, -0.44980404, 0, 0.89312726, -2.4716582, 1.6317196, -3.5360942)
+
+[node name="Character" parent="." unique_id=1036578069 instance=ExtResource("7_5vw27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.9802122, -6)
